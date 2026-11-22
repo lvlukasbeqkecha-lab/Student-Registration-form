@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            padding: 30px;
+        }
+
+        .container {
+            background: white;
+            max-width: 450px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: blue;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Student Registration Form</h2>
+
+<form id="studentForm">
+
+    <label>First Name:</label>
+    <input type="text" id="fname" required>
+
+    <label>Middle Name:</label>
+    <input type="text" id="mname" required>
+
+    <label>Last Name:</label>
+    <input type="text" id="lname" required>
+
+    <label>Student ID:</label>
+    <input type="text" id="sid" required>
+
+    <label>Sex:</label>
+    <select id="sex" required>
+        <option value="">Select Sex</option>
+        <option>Male</option>
+        <option>Female</option>
+    </select>
+
+    <label>Age:</label>
+    <input type="number" id="age"
+           min="1" max="120" required>
+
+    <label>Department:</label>
+    <select id="dept" required>
+        <option value="">Select Department</option>
+        <option>Information Technology</option>
+        <option>Computer Science</option>
+        <option>Information Systems</option>
+        <option>Software Engineering</option>
+    </select>
+
+    <button type="submit">Register</button>
+
+</form>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+document.getElementById("studentForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let fname = document.getElementById("fname").value;
+    let mname = document.getElementById("mname").value;
+    let lname = document.getElementById("lname").value;
+    let sid = document.getElementById("sid").value;
+    let sex = document.getElementById("sex").value;
+    let age = document.getElementById("age").value;
+    let dept = document.getElementById("dept").value;
+
+    document.getElementById("result").innerHTML =
+        "<h3>Registration Successful!</h3>" +
+        "Full Name: " + fname + " " + mname + " " + lname +
+        "<br>Student ID: " + sid +
+        "<br>Sex: " + sex +
+        "<br>Age: " + age +
+        "<br>Department: " + dept;
+
+});
+
+</script>
+
+</body>
+</html>
