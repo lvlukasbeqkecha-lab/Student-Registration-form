@@ -1,122 +1,449 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Student Registration</title>
-    <style>
-        body {
-            font-family: Arial;
-            background: #f2f2f2;
-            padding: 30px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .container {
-            background: white;
-            max-width: 450px;
-            margin: auto;
-            padding: 25px;
-            border-radius: 10px;
-        }
+<title>Student Registration System</title>
 
-        h2 {
-            text-align: center;
-            color: blue;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            box-sizing: border-box;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+    margin: 0;
+    padding: 30px 15px;
+    color: #263445;
+}
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background: blue;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+.container {
+    max-width: 900px;
+    margin: auto;
+}
 
-        #result {
-            margin-top: 15px;
-        }
-    </style>
+.header {
+    background: linear-gradient(135deg, #073b80, #0879d1);
+    color: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px 12px 0 0;
+}
+
+.header h1 {
+    margin: 0 0 10px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+h2 {
+    color: #0755a0;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #0879d1;
+    box-shadow: 0 0 4px #0879d1;
+}
+
+button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.register-btn {
+    background: #0755c7;
+    color: white;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.register-btn:hover {
+    background: #063c91;
+}
+
+.success {
+    display: none;
+    background: #dcfce7;
+    color: #166534;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+.records {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.search {
+    margin-bottom: 20px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #0755a0;
+    color: white;
+}
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+    padding: 7px 10px;
+}
+
+.print-btn {
+    background: #15803d;
+    color: white;
+    margin-top: 10px;
+}
+
+.count {
+    background: #e0edff;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    color: #0755a0;
+    font-weight: bold;
+}
+
+@media(max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 20px;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+    }
+
+    .header, form, .records, .print-btn {
+        display: none !important;
+    }
+
+    .container, .card {
+        display: block !important;
+        box-shadow: none;
+        margin: 0;
+    }
+
+    .success {
+        display: block !important;
+        background: white;
+        color: black;
+        border: 1px solid black;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
+<div class="header">
+    <h1>Student Registration System</h1>
+    <p>Student Information Management</p>
+</div>
+
+<div class="card">
+
 <h2>Student Registration Form</h2>
 
 <form id="studentForm">
 
-    <label>First Name:</label>
-    <input type="text" id="fname" required>
+<div class="form-grid">
 
-    <label>Middle Name:</label>
-    <input type="text" id="mname" required>
+<div class="form-group">
+<label>First Name</label>
+<input type="text" id="fname" required
+       pattern="[A-Za-z ]{2,}">
+</div>
 
-    <label>Last Name:</label>
-    <input type="text" id="lname" required>
+<div class="form-group">
+<label>Middle Name</label>
+<input type="text" id="mname" required
+       pattern="[A-Za-z ]{2,}">
+</div>
 
-    <label>Student ID:</label>
-    <input type="text" id="sid" required>
+<div class="form-group">
+<label>Last Name</label>
+<input type="text" id="lname" required
+       pattern="[A-Za-z ]{2,}">
+</div>
 
-    <label>Sex:</label>
-    <select id="sex" required>
-        <option value="">Select Sex</option>
-        <option>Male</option>
-        <option>Female</option>
-    </select>
+<div class="form-group">
+<label>Student ID</label>
+<input type="text" id="studentId" required>
+</div>
 
-    <label>Age:</label>
-    <input type="number" id="age"
-           min="1" max="120" required>
+<div class="form-group">
+<label>Sex</label>
+<select id="sex" required>
+<option value="">Select Sex</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+</select>
+</div>
 
-    <label>Department:</label>
-    <select id="dept" required>
-        <option value="">Select Department</option>
-        <option>Information Technology</option>
-        <option>Computer Science</option>
-        <option>Information Systems</option>
-        <option>Software Engineering</option>
-    </select>
+<div class="form-group">
+<label>Age</label>
+<input type="number" id="age"
+       min="1" max="120" required>
+</div>
 
-    <button type="submit">Register</button>
+<div class="form-group">
+<label>Department</label>
+<select id="department" required>
+<option value="">Select Department</option>
+<option>Information Technology</option>
+<option>Computer Science</option>
+<option>Software Engineering</option>
+<option>Information Systems</option>
+<option>Electrical Engineering</option>
+</select>
+</div>
+
+</div>
+
+<button type="submit" class="register-btn">
+Register Student
+</button>
 
 </form>
 
-<div id="result"></div>
+<div class="success" id="success">
+<h3>Registration Successful!</h3>
+<div id="receipt"></div>
+<button class="print-btn" onclick="window.print()">
+Print Registration
+</button>
+</div>
+
+</div>
+
+<div class="records">
+
+<h2>Registered Students</h2>
+
+<div class="count" id="count">
+Total Students: 0
+</div>
+
+<input type="search" class="search"
+id="search" placeholder="Search by name or Student ID...">
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Student ID</th>
+<th>Full Name</th>
+<th>Sex</th>
+<th>Age</th>
+<th>Department</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="studentTable"></tbody>
+
+</table>
+</div>
+
+</div>
 
 </div>
 
 <script>
 
-document.getElementById("studentForm")
-.addEventListener("submit", function(event) {
+// Load previously saved students
+let students = JSON.parse(
+    localStorage.getItem("students") || "[]"
+);
 
-    event.preventDefault();
+const form = document.getElementById("studentForm");
 
-    let fname = document.getElementById("fname").value;
-    let mname = document.getElementById("mname").value;
-    let lname = document.getElementById("lname").value;
-    let sid = document.getElementById("sid").value;
-    let sex = document.getElementById("sex").value;
-    let age = document.getElementById("age").value;
-    let dept = document.getElementById("dept").value;
+form.addEventListener("submit", function(e) {
 
-    document.getElementById("result").innerHTML =
-        "<h3>Registration Successful!</h3>" +
-        "Full Name: " + fname + " " + mname + " " + lname +
-        "<br>Student ID: " + sid +
-        "<br>Sex: " + sex +
-        "<br>Age: " + age +
-        "<br>Department: " + dept;
+    e.preventDefault();
 
+    const student = {
+        fname: document.getElementById("fname").value.trim(),
+        mname: document.getElementById("mname").value.trim(),
+        lname: document.getElementById("lname").value.trim(),
+        id: document.getElementById("studentId").value.trim(),
+        sex: document.getElementById("sex").value,
+        age: Number(document.getElementById("age").value),
+        department: document.getElementById("department").value
+    };
+
+    // Check duplicate student ID
+    if (students.some(s =>
+        s.id.toLowerCase() === student.id.toLowerCase()
+    )) {
+        alert("This Student ID is already registered!");
+        return;
+    }
+
+    // Save student
+    students.push(student);
+
+    localStorage.setItem(
+        "students",
+        JSON.stringify(students)
+    );
+
+    // Display receipt safely
+    const receipt = document.getElementById("receipt");
+    receipt.replaceChildren();
+
+    const details = [
+        ["Full Name", `${student.fname} ${student.mname} ${student.lname}`],
+        ["Student ID", student.id],
+        ["Sex", student.sex],
+        ["Age", student.age],
+        ["Department", student.department]
+    ];
+
+    details.forEach(([label, value]) => {
+        const p = document.createElement("p");
+        p.textContent = `${label}: ${value}`;
+        receipt.appendChild(p);
+    });
+
+    document.getElementById("success").style.display = "block";
+
+    form.reset();
+
+    displayStudents();
 });
+
+// Display registered students
+function displayStudents(filter = "") {
+
+    const table = document.getElementById("studentTable");
+    table.replaceChildren();
+
+    const filtered = students.filter(s =>
+        `${s.fname} ${s.mname} ${s.lname} ${s.id}`
+        .toLowerCase().includes(filter.toLowerCase())
+    );
+
+    filtered.forEach(student => {
+
+        const row = document.createElement("tr");
+
+        const values = [
+            student.id,
+            `${student.fname} ${student.mname} ${student.lname}`,
+            student.sex,
+            student.age,
+            student.department
+        ];
+
+        values.forEach(value => {
+            const td = document.createElement("td");
+            td.textContent = value;
+            row.appendChild(td);
+        });
+
+        const action = document.createElement("td");
+        const btn = document.createElement("button");
+
+        btn.textContent = "Delete";
+        btn.className = "delete-btn";
+
+        btn.addEventListener("click", () => {
+            if (confirm("Delete this student record?")) {
+                students = students.filter(s => s !== student);
+                localStorage.setItem(
+                    "students",
+                    JSON.stringify(students)
+                );
+                displayStudents(
+                    document.getElementById("search").value
+                );
+            }
+        });
+
+        action.appendChild(btn);
+        row.appendChild(action);
+        table.appendChild(row);
+    });
+
+    document.getElementById("count").textContent =
+        "Total Students: " + students.length;
+}
+
+// Search students
+document.getElementById("search").addEventListener(
+    "input", function() {
+        displayStudents(this.value);
+    }
+);
+
+// Initial display
+displayStudents();
 
 </script>
 
